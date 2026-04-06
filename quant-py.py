@@ -14,6 +14,9 @@ equity = 100 * np.exp(np.cumsum(daily_returns));
 idx = pd.date_range("2020-01-05", periods=n, freq="B");
 ret = pd.Series(daily_returns, index=idx, name="returns");
 
-print(ret.describe());
+vol_20d = ret.rolling(20).std() * np.sqrt(252);
 
+print(ret.describe());
+print(round(equity[-1], 4));
+print(round(vol_20d.iloc[-1], 4));
 
